@@ -44,4 +44,8 @@ class NMC(object):
         return self
 
     def predict(self, xts):
-        pass
+        if self._centroids is None:
+            raise ValueError("Classifier is not fit. Call fit()!")
+        dist = euclidean_distances(xts, self._centroids)
+        y_pred = np.argmin(dist, axis=1)
+        return y_pred

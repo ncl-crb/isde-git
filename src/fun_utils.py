@@ -36,7 +36,6 @@ def split_data(x, y, tr_fraction=0.5):
     np.random.shuffle(idx)
     n_tr = int(y.size*tr_fraction)
     n_ts = y.size - n_tr
-    print("[CHECK]... ",n_tr+n_ts)
     x_tr = x[idx[: n_tr], :]
     y_tr = y[idx[: n_tr]]
 
