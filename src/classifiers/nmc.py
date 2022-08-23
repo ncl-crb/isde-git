@@ -35,6 +35,16 @@ class NMC(object):
         return self._class_labels
 
     def fit(self, xtr, ytr):
+        """Compute the average centroid for each class.
+
+        This function should populate the `._centroids` attribute
+        with a numpy array of shape (num_classes, num_features).
+
+        input:
+            x: set of images (training set, numpy array)
+            y: labels (training set, numpy array)
+
+        """
         n_classes = np.unique(ytr).size
         n_feature = xtr.shape[1]
         self._centroids = np.zeros(shape=(n_classes, n_feature))
@@ -44,6 +54,15 @@ class NMC(object):
         return self
 
     def predict(self, xts):
+        """Predict the class of each input.
+
+        input:
+            x: set of images (test set, numpy array)
+
+        output:
+            y: labels (numpy array)
+
+        """
         if self._centroids is None:
             raise ValueError("Classifier is not fit. Call fit()!")
         dist = euclidean_distances(xts, self._centroids)
